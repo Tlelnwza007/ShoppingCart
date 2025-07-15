@@ -1,8 +1,9 @@
+package Lib;
+
 import java.util.ArrayList;
 
 public class ShoppingCartManualTest {
-
-    public static void run() {
+     public static void run() {
         System.out.println("--- Starting Shopping Cart Calculator Tests ---");
         System.out.println(); // for spacing
 
@@ -47,7 +48,29 @@ public class ShoppingCartManualTest {
             System.out.println("FAILED: Simple cart total expected 65.0 but got " + total3);
             failedCount++;
         }
+         // test 4: คำนวนBoGo 1 แถม 1 
+        ArrayList<CartItem> BOGOCart = new ArrayList<>();
+        BOGOCart.add(new CartItem("BOGO", "Bread", 25.0, 2));
+        double total4 = ShoppingCartCalculator.calculateTotalPrice(BOGOCart);
+        if (total4 == 25.0) {
+            System.out.println("PASSED: BOGOCart total is correct quantity 2");
+            passedCount++;
+        } else {
+            System.out.println("FAILED: BOGOCart total expected 2 but got " + total4);
+            failedCount++;
+        }
 
+        // test 5: คำนวณBULK ซื้อ 6 ชิ้นจะได้ลดราคา 10%
+         ArrayList<CartItem> BULK = new ArrayList<>();
+        BULK.add(new CartItem("BULK", "Bread", 25, 7));
+        double total5 = ShoppingCartCalculator.calculateTotalPrice(BULK);
+        if (total5 == 157.5) {
+            System.out.println("PASSED: BULK total is correct");
+            passedCount++;
+        } else {
+            System.out.println("FAILED: BULK total expected 2 but got " + total5);
+            failedCount++;
+        }
         // --- Test Summary ---
         System.out.println("\n--------------------");
         System.out.println("--- Test Summary ---");
